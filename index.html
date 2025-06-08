@@ -1,1 +1,75 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seninle Sonsuza</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Müzik -->
+  <audio autoplay loop>
+    <source src="muzik.mp3" type="audio/mp3">
+    Tarayıcınız ses çaları desteklemiyor.
+  </audio>
+
+  <!-- Giriş ekranı -->
+  <div class="entry-screen">
+    <h1>🌹 Hoş Geldin Aşkım 🌹</h1>
+    <p>Çıkma yıldönümümüzü hatırlıyor musun?</p>
+    <input type="date" id="dateInput" />
+    <button onclick="checkDate()">Giriş Yap</button>
+  </div>
+
+  <!-- İçerik (başta gizli) -->
+  <div id="mainContent" style="display:none;">
+    <h2>💖 Sürprizlere Hoş Geldin 💖</h2>
+
+    <!-- Video -->
+    <video controls width="100%">
+      <source src="video.mp4" type="video/mp4" />
+      Tarayıcınız video oynatmayı desteklemiyor.
+    </video>
+
+    <!-- Albüm -->
+    <div class="album">
+      <h3>📷 Fotoğraf Albümümüz</h3>
+      <img src="album1.jpg" />
+      <img src="album2.jpg" />
+    </div>
+
+    <!-- Kalpler -->
+    <div class="hearts">
+      <div class="heart" onclick="showLetter('Seni sevdiğim her gün bir mucize...')">💗</div>
+      <div class="heart" onclick="showLetter('Gözlerin ilkbahar gibi...')">❤️</div>
+    </div>
+
+    <!-- Son Görsel -->
+    <div class="final-section" id="finalSection">
+      <img id="lovePhoto" src="sevgilim.jpg" alt="Sevgilim" />
+      <div class="kisses" id="kissesContainer"></div>
+      <h2 id="loveText" class="hidden-text">Seni çooook seviyorum karıııııııııımmm 💖💍</h2>
+      <canvas id="confetti" class="hidden-canvas"></canvas>
+    </div>
+
+    <!-- Gizli Sürpriz -->
+    <div class="secret-surprise">
+      <button id="surpriseBtn">Sürprizi Görmeye Hazırım!</button>
+    </div>
+    <div id="secretModal" class="hidden">
+      <div class="overlay"></div>
+      <div class="modal-content">
+        <h2>🎁 Gizli Sürpriz!</h2>
+        <p>Sevgilim, bana göre dünya ikiye ayrılıyor. Senin olduğun yer ve senin olmadığın yer… Her şey seninle güzel. 💖</p>
+        <p>Sonsuza kadar... Seninle. 💍</p>
+        <button onclick="closeSecret()">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
