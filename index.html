@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ebrum'a Özel</title>
   <style>
     body {
       margin: 0;
-      background-color: #fff0f5;
-      overflow-x: hidden;
+      background: linear-gradient(to bottom, #ffe4e1, #fff0f5);
       font-family: 'Comic Sans MS', cursive;
+      color: #d6336c;
+      padding: 15px;
     }
 
-    video {
+    h1 {
+      text-align: center;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff69b4; }
+      to { text-shadow: 0 0 20px #ff1493; }
+    }
+
+    .video {
       width: 100%;
-      border-radius: 20px;
-      margin-top: 10px;
-    }
-
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 15px;
-    }
-
-    .gallery img {
-      width: 100px;
-      height: 100px;
+      max-width: 100%;
+      margin-bottom: 20px;
       border-radius: 15px;
-      object-fit: cover;
-      cursor: pointer;
-      transition: transform 0.2s;
     }
 
-    .gallery img:hover {
-      transform: scale(1.1);
+    .memory {
+      background: #fff0f5;
+      border: 2px dashed #ff69b4;
+      padding: 15px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    }
+
+    .memory img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .memory p {
+      margin: 0;
+      line-height: 1.6;
     }
 
     .heart {
       position: absolute;
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
       background: url('https://upload.wikimedia.org/wikipedia/commons/3/35/Emoji_u2764.svg') no-repeat center/contain;
       animation: float 6s linear infinite;
       pointer-events: none;
@@ -59,84 +70,71 @@
       }
     }
 
-    .letter {
+    .letter-box {
+      background: #fffafc;
+      border: 2px solid #ffc0cb;
+      padding: 10px;
+      border-radius: 15px;
+      margin-top: 30px;
+      box-shadow: 0 0 5px #ff69b4;
+    }
+
+    audio {
       display: none;
-      position: fixed;
-      top: 20%;
-      left: 10%;
-      width: 80%;
-      background: #fff;
-      border: 3px dashed #ff69b4;
-      padding: 20px;
-      border-radius: 20px;
-      z-index: 10;
-      color: #d6336c;
-      font-size: 1rem;
-    }
-
-    .close-btn {
-      text-align: right;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .note-trigger {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/3/35/Emoji_u2764.svg') no-repeat center/contain;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
+  <h1>💖 Ebrum’a Anılarla Dolu Bir Yolculuk 💖</h1>
+
   <!-- Müzik -->
   <audio autoplay loop>
-    <source src="anil-emre-daldal.mp3" type="audio/mpeg" />
+    <source src="anil-emre-daldal.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Video (kendin ekleyeceksin) -->
-  <video controls>
-    <source src="video.mp4" type="video/mp4" />
-    Tarayıcınız video desteklemiyor.
+  <!-- Video -->
+  <video class="video" controls>
+    <source src="video.mp4" type="video/mp4">
   </video>
 
-  <!-- Fotoğraf Galerisi -->
-  <div class="gallery">
-    <img src="foto1.jpg" />
-    <img src="foto2.jpg" />
-    <img src="foto3.jpg" />
-    <!-- daha fazlasını ekle -->
+  <!-- Anı 1 -->
+  <div class="memory">
+    <img src="foto1.jpg" alt="Birlikte Gülümserken">
+    <p><strong>🌸 O gülümsemenin ilkini gördüğüm gün</strong><br>
+    O gün gözlerine baktığımda sadece sevgi değil, huzur da gördüm. Bu fotoğraf senin içindeki neşeyi yansıtıyor. Güzelliğine her zaman hayran kalacağım 💫</p>
   </div>
 
-  <!-- Kalpli Mektuplar -->
-  <div class="note-trigger" style="top: 80%; left: 10%;" onclick="showLetter('İyi ki hayatımdasın, unutkan olman seni daha tatlı yapıyor! 💌')"></div>
-  <div class="note-trigger" style="top: 20%; left: 60%;" onclick="showLetter('Her anımda sen varsın, her unuttuğun şeyi hatırlatırım ben sana 🥰')"></div>
-
-  <div id="letterBox" class="letter">
-    <div class="close-btn" onclick="closeLetter()">Kapat ✖️</div>
-    <div id="letterText"></div>
+  <!-- Anı 2 -->
+  <div class="memory">
+    <img src="foto2.jpg" alt="Birlikte Dışarıda">
+    <p><strong>🍂 Bir sonbahar yürüyüşümüzden</strong><br>
+    Elini tutarken dünyanın en doğru yerindeymişim gibi hissediyorum. Unuttuğun şeyler olabilir ama sevgim asla unutmuyor seni 💌</p>
   </div>
 
+  <!-- Anı 3 -->
+  <div class="memory">
+    <img src="foto3.jpg" alt="Kahkahalar">
+    <p><strong>😂 Kahkahalarla dolu bir an</strong><br>
+    Unutkan olman seni daha sevimli yapıyor. Bazen aynı şeyi 3 kere soruyorsun, ama her seferinde daha tatlı geliyorsun 🧸</p>
+  </div>
+
+  <!-- Unutkanlığa Not -->
+  <div class="letter-box">
+    <p>💭 <strong>Unutkanlık mı?</strong><br>
+    Unuttuğun şeyleri ben hatırlarım aşkım. Çünkü biz artık tek bir kalp gibi olduk. Gülümse, çünkü her şeyinle çok güzelsin 💞</p>
+  </div>
+
+  <!-- Kalpler -->
   <script>
     function createHearts() {
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 25; i++) {
         const heart = document.createElement("div");
         heart.className = "heart";
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.animationDelay = Math.random() * 5 + "s";
         document.body.appendChild(heart);
       }
-    }
-
-    function showLetter(text) {
-      document.getElementById("letterText").innerText = text;
-      document.getElementById("letterBox").style.display = "block";
-    }
-
-    function closeLetter() {
-      document.getElementById("letterBox").style.display = "none";
     }
 
     createHearts();
