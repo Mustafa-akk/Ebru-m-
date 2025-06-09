@@ -1,75 +1,146 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seninle Sonsuza</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ebrum'a Özel</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #fff0f5;
+      overflow-x: hidden;
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 100px;
+      height: 100px;
+      border-radius: 15px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/35/Emoji_u2764.svg') no-repeat center/contain;
+      animation: float 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .letter {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 10%;
+      width: 80%;
+      background: #fff;
+      border: 3px dashed #ff69b4;
+      padding: 20px;
+      border-radius: 20px;
+      z-index: 10;
+      color: #d6336c;
+      font-size: 1rem;
+    }
+
+    .close-btn {
+      text-align: right;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .note-trigger {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/35/Emoji_u2764.svg') no-repeat center/contain;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
   <!-- Müzik -->
   <audio autoplay loop>
-    <source src="muzik.mp3" type="audio/mp3">
-    Tarayıcınız ses çaları desteklemiyor.
+    <source src="anil-emre-daldal.mp3" type="audio/mpeg" />
   </audio>
 
-  <!-- Giriş ekranı -->
-  <div class="entry-screen">
-    <h1>🌹 Hoş Geldin Aşkım 🌹</h1>
-    <p>Çıkma yıldönümümüzü hatırlıyor musun?</p>
-    <input type="date" id="dateInput" />
-    <button onclick="checkDate()">Giriş Yap</button>
+  <!-- Video (kendin ekleyeceksin) -->
+  <video controls>
+    <source src="video.mp4" type="video/mp4" />
+    Tarayıcınız video desteklemiyor.
+  </video>
+
+  <!-- Fotoğraf Galerisi -->
+  <div class="gallery">
+    <img src="foto1.jpg" />
+    <img src="foto2.jpg" />
+    <img src="foto3.jpg" />
+    <!-- daha fazlasını ekle -->
   </div>
 
-  <!-- İçerik (başta gizli) -->
-  <div id="mainContent" style="display:none;">
-    <h2>💖 Sürprizlere Hoş Geldin 💖</h2>
+  <!-- Kalpli Mektuplar -->
+  <div class="note-trigger" style="top: 80%; left: 10%;" onclick="showLetter('İyi ki hayatımdasın, unutkan olman seni daha tatlı yapıyor! 💌')"></div>
+  <div class="note-trigger" style="top: 20%; left: 60%;" onclick="showLetter('Her anımda sen varsın, her unuttuğun şeyi hatırlatırım ben sana 🥰')"></div>
 
-    <!-- Video -->
-    <video controls width="100%">
-      <source src="video.mp4" type="video/mp4" />
-      Tarayıcınız video oynatmayı desteklemiyor.
-    </video>
-
-    <!-- Albüm -->
-    <div class="album">
-      <h3>📷 Fotoğraf Albümümüz</h3>
-      <img src="album1.jpg" />
-      <img src="album2.jpg" />
-    </div>
-
-    <!-- Kalpler -->
-    <div class="hearts">
-      <div class="heart" onclick="showLetter('Seni sevdiğim her gün bir mucize...')">💗</div>
-      <div class="heart" onclick="showLetter('Gözlerin ilkbahar gibi...')">❤️</div>
-    </div>
-
-    <!-- Son Görsel -->
-    <div class="final-section" id="finalSection">
-      <img id="lovePhoto" src="sevgilim.jpg" alt="Sevgilim" />
-      <div class="kisses" id="kissesContainer"></div>
-      <h2 id="loveText" class="hidden-text">Seni çooook seviyorum karıııııııııımmm 💖💍</h2>
-      <canvas id="confetti" class="hidden-canvas"></canvas>
-    </div>
-
-    <!-- Gizli Sürpriz -->
-    <div class="secret-surprise">
-      <button id="surpriseBtn">Sürprizi Görmeye Hazırım!</button>
-    </div>
-    <div id="secretModal" class="hidden">
-      <div class="overlay"></div>
-      <div class="modal-content">
-        <h2>🎁 Gizli Sürpriz!</h2>
-        <p>Sevgilim, bana göre dünya ikiye ayrılıyor. Senin olduğun yer ve senin olmadığın yer… Her şey seninle güzel. 💖</p>
-        <p>Sonsuza kadar... Seninle. 💍</p>
-        <button onclick="closeSecret()">Kapat</button>
-      </div>
-    </div>
+  <div id="letterBox" class="letter">
+    <div class="close-btn" onclick="closeLetter()">Kapat ✖️</div>
+    <div id="letterText"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function createHearts() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        document.body.appendChild(heart);
+      }
+    }
+
+    function showLetter(text) {
+      document.getElementById("letterText").innerText = text;
+      document.getElementById("letterBox").style.display = "block";
+    }
+
+    function closeLetter() {
+      document.getElementById("letterBox").style.display = "none";
+    }
+
+    createHearts();
+  </script>
+
 </body>
 </html>
-
